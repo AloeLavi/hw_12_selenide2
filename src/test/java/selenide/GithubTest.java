@@ -12,9 +12,10 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class GithubTest {
-    @Disabled
+
     @Test
     void SolutionsTest() {
+
         open("https://github.com");
         $(byText("Solutions")).hover();
         $(byText("Enterprise")).click();
@@ -25,7 +26,18 @@ public class GithubTest {
     @Test
     void DragAndDropTest() {
         open("https://the-internet.herokuapp.com/drag_and_drop");
-        actions().moveToElement($(byText("A"))).clickAndHold().moveByOffset(300, 200).release().perform();
-        sleep(5000);
+        //проверяем что в колонке1=А, в колонке2=В
+        $(("#column-a")).shouldHave(text("A"));
+        $(("#column-b")).shouldHave(text("B"));
+
+        // actions не удалось заставить работать
+     //   actions().moveToElement($(byText("A"))).clickAndHold().moveToElement($(byText("B"))).release().perform();
+        $(byText("A")).dragAndDropTo($(byText("B")));
+
+        //проверяем что в колонке1=B, в колонке2=A
+        $(("#column-a")).shouldHave(text("B"));
+        $(("#column-b")).shouldHave(text("A"));
+
+        sleep(3000);
     }
 }
