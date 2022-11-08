@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class GithubTest {
 
     @Test
-    void SolutionsTest() {
+    void solutionsTest() {
 
         open("https://github.com");
         $(byText("Solutions")).hover();
@@ -24,7 +24,7 @@ public class GithubTest {
     }
 
     @Test
-    void DragAndDropTest() {
+    void dragAndDropTest() {
         open("https://the-internet.herokuapp.com/drag_and_drop");
         //проверяем что в колонке1=А, в колонке2=В
         $(("#column-a")).shouldHave(text("A"));
